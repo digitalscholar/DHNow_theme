@@ -1,0 +1,47 @@
+ul,
+ol {
+	margin: 0;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: none;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+
+li:not(.menu-item) {
+	margin-bottom: 30px;
+	position: relative;
+
+	&::before {
+		background-image: url(./images/bullet-icon-blue.svg);
+		background-repeat: no-repeat;
+		content: ' ';
+		height: 18px;
+		left: -30px;
+		position: absolute;
+		top: 5px;
+		width: 13px;
+		z-index: 1;
+	}
+}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin: 0 1.5em 1.5em;
+}

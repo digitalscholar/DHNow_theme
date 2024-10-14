@@ -1,0 +1,209 @@
+/* Editor Styles
+--------------------------------------------- */
+/* Typography
+--------------------------------------------- */
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: #303030;
+	font-family: "Encode Sans Condensed", sans-serif;
+	font-size: 1.063rem;
+	line-height: 1.5;
+	letter-spacing: 0.08rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	font-family: "Encode Sans Condensed", sans-serif;
+	line-height: 1.2;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+	text-decoration: none;
+}
+
+h3,
+h4,
+h5 {
+	font-weight: 600;
+}
+
+h1 {
+	font-size: 2.1875rem;
+	font-weight: 700;
+}
+
+@media (min-width: 1200px) {
+	h1 {
+		font-size: 2.5rem;
+	}
+}
+
+h2 {
+	font-size: 1.875rem;
+	font-weight: 700;
+	margin-bottom: 50px;
+}
+
+@media (min-width: 1200px) {
+	h2 {
+		font-size: 2.1875rem;
+	}
+}
+
+h3 {
+	font-size: 1.563rem;
+}
+
+@media (min-width: 1200px) {
+	h3 {
+		font-size: 1.875rem;
+	}
+}
+
+h4 {
+	font-size: 1.25rem;
+}
+
+@media (min-width: 1200px) {
+	h4 {
+		font-size: 1.563rem;
+	}
+}
+
+h5 {
+	font-size: 1.25rem;
+}
+
+h6 {
+	font-size: 1rem;
+}
+
+p {
+	margin-bottom: 1.875em;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+blockquote {
+	margin: 0 1.5em;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: #f9f9f9;
+	border-radius: 15px;
+	box-shadow: 3px 4px 15px rgba(0, 0, 0, 0.11);
+	font-family: "Encode Sans Condensed", sans-serif;
+	font-size: 1.063rem;
+	font-weight: 600;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 20px;
+}
+
+code,
+kbd,
+tt,
+var {
+	font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+mark,
+ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+
+big {
+	font-size: 125%;
+}
+
+.small {
+	font-size: 0.875rem;
+	color: #565656;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid;
+	border-color: #ccc #ccc #bbb;
+	border-radius: 3px;
+	background: #e6e6e6;
+	color: rgba(0, 0, 0, 0.8);
+	line-height: 1;
+	padding: 0.6em 1em 0.4em;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	border-color: #ccc #bbb #aaa;
+}
+
+button:active, button:focus,
+input[type="button"]:active,
+input[type="button"]:focus,
+input[type="reset"]:active,
+input[type="reset"]:focus,
+input[type="submit"]:active,
+input[type="submit"]:focus {
+	border-color: #aaa #bbb #bbb;
+}
+
+.button,
+.wp-block-button {
+	font-size: 1.2rem;
+	font-variant-caps: all-small-caps;
+	font-weight: 500;
+	color: #fff;
+}
+
+.button a,
+.wp-block-button a {
+	color: #fff;
+}
+
+.wp-block-button__link {
+	background-color: #ff6b00;
+	line-height: 1;
+	padding: 15px 40px 18px;
+	transition: all 0.2s ease-in-out;
+}
+
+.wp-block-button__link:hover {
+	background-color: #dc4e00;
+}
+
+/*# sourceMappingURL=style-editor.css.map */

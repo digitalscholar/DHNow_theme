@@ -1,0 +1,38 @@
+.site-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	line-height: 0;
+	z-index: 1001;
+	transition: all .5s ease-out;
+	transition-property: background-color, height;
+	background-color: $color__black;
+
+	@include xl {
+		background-color: transparent;
+	}
+}
+
+.site-branding {
+	background-color: $color__white;
+	border-radius: 0 0 40px 0;
+	flex-shrink: 0;
+	padding: 10px;
+	transition: all .5s ease-out;
+
+	@include xl {
+		border-radius: 0 0 70px 0;
+		padding: 30px;
+	}
+
+	.site-header__small & {
+		border-radius: 0 0 40px 0;
+		padding: 10px;
+	}
+}
+
+
