@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
-
 DHNow Theme
 ===
+![screenshot](https://github.com/user-attachments/assets/37a87621-7cd8-44c5-b61b-13ccff5708cd)
 
 Installation
 ---------------
