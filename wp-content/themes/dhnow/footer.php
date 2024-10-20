@@ -52,7 +52,7 @@ $footer_description = $footer['description'];
             <div class="container">
                 <div class="site-info">
                     <div class="site-info-left">
-                        <p>© <?php echo date('Y'); ?> Digital Humanities Now. All Rights Reserved</p>
+                        <p>© <?php echo date( 'Y' ); ?> Digital Humanities Now. All Rights Reserved</p>
                     </div><!-- .site-info-left -->
 
                     <div class="site-info-right">

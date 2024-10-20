@@ -40,11 +40,26 @@ function dhnow_sidebars() {
 	register_sidebar( array(
 		'name'          => 'Editors\' Corner Sidebar',
 		'id'            => 'editors-corner-sidebar',
-		'before_widget' => '<div class="widget-area">',
-		'after_widget'  => '</div>',
+		'before_widget' => '<section class="widget widget_editors-corner">',
+		'after_widget'  => '</section>',
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
 }
-
 add_action( 'widgets_init', 'dhnow_sidebars' );
+
+function my_dynamic_sidebar_params( $params ) {
+	$icon_path = get_theme_file_path( '/images/' . $params[0]['id'] . '-icon.svg' );
+	$icon_url  = get_theme_file_uri( '/images/' . $params[0]['id'] . '-icon.svg' );
+
+	$params[0]['before_widget'] .= '<div class="widget-header">';
+
+	if ( file_exists( $icon_path ) ) {
+		$params[0]['before_widget'] .= '<img src="' . esc_url( $icon_url ) . '" alt="' . $params[0]['name'] . ' icon">';
+	}
+
+	$params[0]['after_title'] .= '</div>';
+
+	return $params;
+}
+add_filter('dynamic_sidebar_params', 'my_dynamic_sidebar_params');

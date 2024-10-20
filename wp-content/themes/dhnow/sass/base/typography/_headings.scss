@@ -10,6 +10,10 @@ h6 {
 
 	a {
 		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -31,7 +35,7 @@ h1 {
 h2 {
 	font-size: 1.875rem; //30px
 	font-weight: 700;
-	margin-bottom: 50px;
+	margin-bottom: 50px !important;
 
 	@include xl {
 		font-size: 2.1875rem; //35px
@@ -40,6 +44,7 @@ h2 {
 
 h3 {
 	font-size: 1.563rem; //25px
+	margin-bottom: 50px !important;
 
 	@include xl {
 		font-size: 1.875rem; //30px

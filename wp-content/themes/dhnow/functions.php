@@ -177,10 +177,14 @@ function dhnow_scripts() {
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null );
     wp_style_add_data( 'dhnow-style', 'rtl', 'replace' );
 
-		wp_enqueue_script( 'dhnow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DHNOW_VERSION, true );
+    wp_enqueue_script( 'dhnow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DHNOW_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	if ( is_page_template( 'page-template-sidebar.php' ) ) {
+		wp_enqueue_script( 'dhnow-editors-corner', get_template_directory_uri() . '/js/editors-corner.js', array(), DHNOW_VERSION, true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'dhnow_scripts' );
@@ -189,16 +193,19 @@ add_action( 'wp_enqueue_scripts', 'dhnow_scripts' );
  * Enqueue editor styles.
  */
 function dhnow_enqueue_editor_styles() {
-	// Check if we are using the block editor
-	if ( function_exists( 'is_block_editor' ) && is_block_editor() ) {
-		// Enqueue the style for the block editor
-		wp_enqueue_style( 'dhnow-block-editor-styles', get_template_directory_uri() . '/style-editor.css', array(), '1.0', 'all' );
-	} else {
-		// Enqueue the style for the classic editor
-		add_editor_style( 'style-editor.css' );
+	$current_screen = get_current_screen();
+	if ( $current_screen->id !== 'widgets' ) {
+		// Check if we are using the block editor
+		if ( function_exists('is_block_editor' ) && is_block_editor()) {
+			// Enqueue the style for the block editor
+			wp_enqueue_style( 'dhnow-block-editor-styles', get_template_directory_uri() . '/style-editor.css', array(), '1.0', 'all' );
+		} else {
+			// Enqueue the style for the classic editor
+			add_editor_style( 'style-editor.css' );
+		}
 	}
 }
-add_action( 'admin_init', 'dhnow_enqueue_editor_styles' );
+add_action( 'enqueue_block_editor_assets', 'dhnow_enqueue_editor_styles' );
 
 
 /**
@@ -215,11 +222,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Custom Blocks functions.
- */
-require get_template_directory() . '/inc/custom-blocks.php';
 
 /**
  * Customizer additions.

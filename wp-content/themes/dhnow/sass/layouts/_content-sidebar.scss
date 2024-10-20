@@ -1,10 +1,21 @@
 .with-sidebar {
 	display: grid;
-	grid-template-columns: auto ($size__site-sidebar);
 	grid-template-areas:
+		"header"
+		"sidebar"
+		"main"
+		"footer";
+	grid-template-columns: auto;
+	margin: 0 auto;
+	max-width: 1024px;
+
+	@include xl {
+		grid-template-areas:
 		"header header"
 		"main sidebar"
 		"footer footer";
+		grid-template-columns: auto ($size__site-sidebar);
+	}
 
 	.grid-header {
 		grid-area: header;
@@ -13,6 +24,10 @@
 	.grid-main {
 		grid-area: main;
 		overflow: hidden; /* Resolves issue with <pre> elements forcing full width. */
+
+		@include xl {
+			max-width: 630px;
+		}
 	}
 
 	.widget-area {
@@ -23,4 +38,3 @@
 		grid-area: footer;
 	}
 }
-

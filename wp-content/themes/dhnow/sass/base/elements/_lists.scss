@@ -21,20 +21,22 @@ li > ol {
 	margin-left: 1.5em;
 }
 
-li:not(.menu-item) {
-	margin-bottom: 30px;
-	position: relative;
+ul {
+	li:not(.menu-item) {
+		margin-bottom: 30px;
+		position: relative;
 
-	&::before {
-		background-image: url(./images/bullet-icon-blue.svg);
-		background-repeat: no-repeat;
-		content: ' ';
-		height: 18px;
-		left: -30px;
-		position: absolute;
-		top: 5px;
-		width: 13px;
-		z-index: 1;
+		&::before {
+			background-image: url(./images/bullet-icon-blue.svg);
+			background-repeat: no-repeat;
+			content: ' ';
+			height: 18px;
+			left: -30px;
+			position: absolute;
+			top: 5px;
+			width: 13px;
+			z-index: 1;
+		}
 	}
 }
 

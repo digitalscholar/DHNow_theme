@@ -6,13 +6,13 @@ Template Name: Page With Sidebar
 get_header();
 
 $content = get_the_content();
-$blocks  = parse_blocks($content);
+$blocks  = parse_blocks( $content );
 ?>
 
 	<main id="primary" class="site-main">
         <?php
-        if ( ! empty($blocks) && $blocks[0]['blockName'] === 'core/cover' ) {
-            echo render_block($blocks[0]);
+        if ( ! empty( $blocks ) && $blocks[0]['blockName'] === 'core/cover' ) {
+            echo render_block( $blocks[0] );
         }
         ?>
 
@@ -28,11 +28,14 @@ $blocks  = parse_blocks($content);
                 }
                 ?>
             </div>
-            <?php
-            if ( is_active_sidebar( 'editors-corner-sidebar' ) ) {
-                dynamic_sidebar( 'editors-corner-sidebar' );
-            }
-            ?>
+            <?php if ( is_active_sidebar( 'editors-corner-sidebar' ) ) : ?>
+
+				<aside id="secondary" class="widget-area">
+                    <?php dynamic_sidebar( 'editors-corner-sidebar' ); ?>
+				</aside>
+
+            <?php endif; ?>
+
             <div class="grid-footer">
 
             </div>
