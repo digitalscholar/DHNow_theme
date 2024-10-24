@@ -85,6 +85,10 @@ html, body {
 	.wp-block-group {
 		padding: 0;
 	}
+
+	.widget & {
+		padding: 0;
+	}
 }
 
 .vertical-center {

@@ -52,13 +52,11 @@ function my_dynamic_sidebar_params( $params ) {
 	$icon_path = get_theme_file_path( '/images/' . $params[0]['id'] . '-icon.svg' );
 	$icon_url  = get_theme_file_uri( '/images/' . $params[0]['id'] . '-icon.svg' );
 
-	$params[0]['before_widget'] .= '<div class="widget-header">';
-
 	if ( file_exists( $icon_path ) ) {
+		$params[0]['before_widget'] .= '<div class="widget-header">';
 		$params[0]['before_widget'] .= '<img src="' . esc_url( $icon_url ) . '" alt="' . $params[0]['name'] . ' icon">';
+		$params[0]['after_title'] .= '</div>';
 	}
-
-	$params[0]['after_title'] .= '</div>';
 
 	return $params;
 }

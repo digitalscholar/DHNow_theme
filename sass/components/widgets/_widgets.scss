@@ -13,12 +13,17 @@
 		max-width: 100%;
 	}
 
-	.widget-header {
+	.widget-header,
+	.wp-block-heading {
 		align-items: flex-start;
 		border-bottom: 1px solid $color__primary;
 		display: flex;
 		padding-bottom: 10px;
 		position: relative;
+	}
+
+	.wp-block-heading {
+		width: 100%;
 	}
 
 	img {
