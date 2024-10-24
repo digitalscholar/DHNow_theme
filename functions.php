@@ -174,11 +174,11 @@ add_action( 'widgets_init', 'dhnow_widgets_init' );
  */
 function dhnow_scripts() {
 	wp_enqueue_style( 'dhnow-style', get_stylesheet_uri(), array(), DHNOW_VERSION );
-    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null );
-    wp_style_add_data( 'dhnow-style', 'rtl', 'replace' );
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null );
+	wp_style_add_data( 'dhnow-style', 'rtl', 'replace' );
 
-    wp_enqueue_script( 'dhnow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DHNOW_VERSION, true );
-    wp_enqueue_script( 'dhnow-vertical-tabs', get_template_directory_uri() . '/js/vertical-tabs.js', array(), DHNOW_VERSION, true );
+	wp_enqueue_script( 'dhnow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), DHNOW_VERSION, true );
+	wp_enqueue_script( 'dhnow-vertical-tabs', get_template_directory_uri() . '/js/vertical-tabs.js', array(), DHNOW_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -208,12 +208,6 @@ function dhnow_enqueue_editor_styles() {
 }
 add_action( 'enqueue_block_editor_assets', 'dhnow_enqueue_editor_styles' );
 
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
 /**
  * Custom template tags for this theme.
  */
@@ -223,6 +217,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Custom blocks.
+ */
+require get_template_directory() . '/inc/custom-blocks.php';
 
 /**
  * Customizer additions.
