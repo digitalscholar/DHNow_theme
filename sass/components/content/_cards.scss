@@ -18,14 +18,25 @@
  .card {
      border-radius: 15px;
      border: 1px solid $color__secondary;
-     margin-left: auto;
-     margin-right: auto;
+     margin: 30px auto;
      max-width: 790px;
      padding: 35px 40px;
      width: 100%;
 
-     & img {
+     .wp-block-image {
+        flex-shrink: 0;
+     }
+
+     img {
          border-radius: 0 !important;
+     }
+
+     h2 {
+         margin-bottom: 0 !important;
+     }
+
+     @include md {
+         margin: 50px auto;
      }
 
      @include xl {

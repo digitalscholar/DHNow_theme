@@ -4,10 +4,8 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	window.addEventListener( 'resize', function() {
 		clearTimeout( resizeTimeout );
-		resizeTimeout = setTimeout( setVerticalTabsContainersHeight, 200 );
+		resizeTimeout = setTimeout( onWindowResize, 200 );
 	});
-
-	setVerticalTabsContainersHeight();
 
 	// Set verticalTabsContents visibility and events.
 	verticalTabsContainers.forEach( verticalTabsContainer => {
@@ -51,8 +49,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				const referenceRect = verticalTabsContainer.getBoundingClientRect();
 				const targetRect = event.currentTarget.getBoundingClientRect();
 				const verticalPosition = targetRect.top - referenceRect.top;
-				console.log('verticalPosition=', verticalPosition)
-				indicator.style.top = verticalPosition + 'px';
+				indicator.style.top = ( verticalPosition - 10 ) + 'px';
 			} );
 
 			if ( 0 === currentVerticalTabsButton ) {
@@ -74,24 +71,43 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	} );
 
-	// Set verticalTabsContainers height.
-	function setVerticalTabsContainersHeight() {
+	onWindowResize();
+
+	function onWindowResize() {
 		verticalTabsContainers.forEach( verticalTabsContainer => {
 			const verticalTabsContents = verticalTabsContainer.querySelectorAll( '.tab-content' );
+			//const verticalTabsButtons = verticalTabsContainer.querySelector( '.wp-block-group__inner-container' );
+			const verticalTabsButtons = Array.from(verticalTabsContainer.children).find(
+				(child) => child.classList.contains('wp-block-group__inner-container')
+			);
 
+			// Set verticalTabsContainers height.
 			let verticalTabsContentHeight = 0;
 			verticalTabsContents.forEach( verticalTabsContent => {
 				if ( verticalTabsContent.offsetHeight > verticalTabsContentHeight ) {
 					verticalTabsContentHeight = verticalTabsContent.offsetHeight;
 				}
+
+				if ( window.innerWidth < 1024 ) {
+					verticalTabsContent.style.top = ( verticalTabsButtons.offsetHeight + 20 ) + 'px';
+				} else {
+					verticalTabsContent.style.top = 0;
+				}
 			} );
 
-			const verticalTabsContainerStyle = window.getComputedStyle( verticalTabsContainer );
-			console.log('verticalTabsContainerStyle.paddingTop=', verticalTabsContainerStyle.paddingTop)
+			if ( window.innerWidth < 1024 ) {
+				verticalTabsContentHeight += verticalTabsButtons.offsetHeight;
+			}
 
-			verticalTabsContainer.style.height = (
-				parseFloat( verticalTabsContainerStyle.paddingBottom ) +
-				verticalTabsContentHeight ) + 'px';
+			verticalTabsContainer.style.minHeight = verticalTabsContentHeight + 'px';
+
+			// Animate the indicator.
+			const referenceRect = verticalTabsContainer.getBoundingClientRect();
+			const indicator = verticalTabsContainer.querySelector( '.tab-indicator' );
+			const currentTab = verticalTabsContainer.querySelector( '.tab-button.active a' );
+			const targetRect = currentTab.getBoundingClientRect();
+			const verticalPosition = targetRect.top - referenceRect.top;
+			indicator.style.top = ( verticalPosition - 10 ) + 'px';
 		} );
 	}
 

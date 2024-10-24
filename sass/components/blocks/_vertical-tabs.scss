@@ -3,20 +3,39 @@ $vertical-tabs-left-col-width: 27%;
 
 .vertical-tabs {
 	position: relative;
+	padding: 0 15px !important;
+
+	> .wp-block-group__inner-container {
+		border-bottom: 1px solid $color__background-hr;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 15px;
+		padding-bottom: 18px;
+
+		@include lg {
+			border-bottom: none;
+			display: block;
+			padding-bottom: 0;
+		}
+	}
 
 	&::before {
-		content: "";
-		background-color: $color__black-66;
-		bottom: 0;
-		height: 84%;
-		left: $vertical-tabs-left-col-width;
-		margin: auto;
-		position: absolute;
-		top: 0;
-		width: 1px;
+		content: none;
+
+		@include lg {
+			content: "";
+			background-color: $color__black-66;
+			height: 110%;
+			left: $vertical-tabs-left-col-width;
+			margin: auto;
+			position: absolute;
+			top: -25px;
+			width: 1px;
+		}
 	}
 
 	.tab-indicator {
+		display: none;
 		background-color: $color__primary;
 		border-radius: 2px;
 		height: 40px;
@@ -26,10 +45,51 @@ $vertical-tabs-left-col-width: 27%;
 		transition: top 0.2s ease-out;
 		width: 3px;
 		z-index: 2;
+
+		@include lg {
+			display: block;
+		}
 	}
 
 	.tab-button {
-		width: $vertical-tabs-left-col-width;
+		width: auto;
+		margin-bottom: 0;
+		border: 1px solid $color__secondary;
+		border-radius: 5px;
+		padding: 5px 10px;
+
+		@include lg {
+			width: $vertical-tabs-left-col-width;
+			margin-bottom: 30px;
+			border: none;
+			border-radius: 0;
+			padding: 0;
+		}
+
+		a {
+			text-decoration: none;
+			font-size: $font-size__xs;
+
+			@include lg {
+				font-size: $font-size__m;
+			}
+		}
+
+		&.active {
+			border: 1px solid $color__primary;
+
+			@include lg {
+				border: none;
+			}
+
+			img {
+				filter: brightness(0) saturate(100%) invert(41%) sepia(73%) saturate(1726%) hue-rotate(1deg) brightness(103%) contrast(105%);
+			}
+
+			a {
+				color: $color__primary;
+			}
+		}
 
 		p {
 			margin: 0;
@@ -37,7 +97,11 @@ $vertical-tabs-left-col-width: 27%;
 
 		&.wp-block-media-text {
 			grid-gap: 10px;
-			grid-template-columns: 33px auto !important;
+			grid-template-columns: 20px auto !important;
+
+			@include lg {
+				grid-template-columns: 33px auto !important;
+			}
 
 			.wp-block-media-text__content {
 				padding: 0;
@@ -46,12 +110,18 @@ $vertical-tabs-left-col-width: 27%;
 	}
 
 	.tab-content {
-		left: $vertical-tabs-left-col-width;
+		left: 0;
 		opacity: 0;
-		padding-left: 90px;
+		padding-left: 50px;
 		position: absolute;
-		top: $container-padding-top;
+		top: 180px;
 		transition: opacity 0.2s ease-out;
 		visibility: hidden;
+
+		@include lg{
+			left: $vertical-tabs-left-col-width;
+			padding-left: 90px;
+			top: 0;
+		}
 	}
 }

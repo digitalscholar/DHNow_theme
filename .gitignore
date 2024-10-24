@@ -3,6 +3,7 @@ node_modules/
 
 # Sass
 .sass-cache/
+*.css.map
 
 # ignore log files and databases
 *.log

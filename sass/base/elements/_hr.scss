@@ -1,6 +1,23 @@
-hr {
-	background-color: $color__background-hr;
-	border: 0;
-	height: 1px;
+hr,
+hr.wp-block-separator {
+	border-color: $color__background-hr;
+	border-width: 1px;
 	margin-bottom: 1.5em;
+
+	&.is-style-dots::before {
+		color: $color__black-39;
+	}
+}
+
+.underline-primary {
+	border-bottom: 1px solid $color__primary;
+	margin-bottom: 50px;
+	padding-bottom: 20px !important;
+
+	> * {
+		margin-bottom: 0 !important;
+		margin-top: 0 !important;
+		padding-bottom: 0 !important;
+		padding-top: 0 !important;
+	}
 }

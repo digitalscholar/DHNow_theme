@@ -42,5 +42,32 @@ input[type="submit"] {
 		&:hover {
 			background-color: $color__primary-dark;
 		}
+
+		.is-style-outline & {
+			background-color: transparent;
+			border: none;
+			color: $color__link;
+			font-size: $font-size__m;
+			font-variant-caps: normal;
+			font-weight: 600;
+			padding: 0 25px 0 0;
+			position: relative;
+			text-decoration: underline;
+
+			&:hover {
+				background-color: transparent;
+			}
+
+			&::after {
+				background-image: url(./images/arrow.svg);
+				background-repeat: no-repeat;
+				content: ' ';
+				height: 12px;
+				position: absolute;
+				right: 0;
+				top: 3px;
+				width: 18px;
+			}
+		}
 	}
 }

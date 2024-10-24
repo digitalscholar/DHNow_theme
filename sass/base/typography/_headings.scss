@@ -35,16 +35,16 @@ h1 {
 h2 {
 	font-size: 1.875rem; //30px
 	font-weight: 700;
-	margin-bottom: 50px !important;
+	margin-bottom: 30px !important;
 
 	@include xl {
 		font-size: 2.1875rem; //35px
+		margin-bottom: 50px !important;
 	}
 }
 
 h3 {
 	font-size: 1.563rem; //25px
-	margin-bottom: 50px !important;
 
 	@include xl {
 		font-size: 1.875rem; //30px
