@@ -174,14 +174,54 @@ $site-header-height: 90px;
 
 	.nav-links {
 		display: flex;
+		gap: 40px;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		@include md {
+			flex-wrap: nowrap;
+		}
+	}
+
+	.nav-previous,
+	.nav-next {
+		position: relative;
+
+		.nav-subtitle {
+			margin-bottom: 5px;
+			margin-top: 0 !important;
+		}
 	}
 
 	.nav-previous {
-		flex: 1 0 50%;
+		padding-left: 25px;
+
+		&::after {
+			background-image: url(./images/prev-arrow.svg);
+			background-repeat: no-repeat;
+			content: ' ';
+			height: 12px;
+			position: absolute;
+			left: 0;
+			top: 3px;
+			width: 18px;
+		}
 	}
 
 	.nav-next {
 		text-align: end;
-		flex: 1 0 50%;
+		padding-right: 25px;
+		margin-left: auto;
+
+		&::after {
+			background-image: url(./images/next-arrow.svg);
+			background-repeat: no-repeat;
+			content: ' ';
+			height: 12px;
+			position: absolute;
+			right: 0;
+			top: 3px;
+			width: 18px;
+		}
 	}
 }

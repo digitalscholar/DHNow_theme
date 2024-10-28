@@ -1,0 +1,8 @@
+.wp-block-cover {
+	body.archive &,
+	body.single & {
+		.page-title {
+			text-transform: uppercase;
+		}
+	}
+}

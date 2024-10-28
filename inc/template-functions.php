@@ -48,7 +48,7 @@ function dhnow_sidebars() {
 }
 add_action( 'widgets_init', 'dhnow_sidebars' );
 
-function my_dynamic_sidebar_params( $params ) {
+function dhn_dynamic_sidebar_params( $params ) {
 	$icon_path = get_theme_file_path( '/images/' . $params[0]['id'] . '-icon.svg' );
 	$icon_url  = get_theme_file_uri( '/images/' . $params[0]['id'] . '-icon.svg' );
 
@@ -60,4 +60,4 @@ function my_dynamic_sidebar_params( $params ) {
 
 	return $params;
 }
-add_filter('dynamic_sidebar_params', 'my_dynamic_sidebar_params');
+add_filter( 'dynamic_sidebar_params', 'dhn_dynamic_sidebar_params' );

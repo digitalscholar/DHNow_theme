@@ -39,7 +39,7 @@ $unique_parent_names = array_unique( $parent_category_names );
 				<div style="height:130px" aria-hidden="true" class="wp-block-spacer"></div>
 				<?php
 				if ( ! empty( $unique_parent_names ) ) {
-					echo '<h2 class="cat-links wp-block-heading has-text-align-center">' . implode( ', ', $unique_parent_names ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<h2 class="page-title cat-links wp-block-heading has-text-align-center">' . implode( ', ', $unique_parent_names ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				?>
 			</div>
@@ -61,8 +61,8 @@ $unique_parent_names = array_unique( $parent_category_names );
 
 						the_post_navigation(
 							array(
-								'prev_text' => '<h6 class="nav-subtitle">' . esc_html__( 'Previous:', 'dhnow' ) . '</h6> <span class="nav-title">%title</span>',
-								'next_text' => '<h6 class="nav-subtitle">' . esc_html__( 'Next:', 'dhnow' ) . '</h6> <span class="nav-title">%title</span>',
+								'prev_text' => '<h6 class="nav-subtitle">' . esc_html__( 'Previous post', 'dhnow' ) . '</h6> <span class="nav-title">%title</span>',
+								'next_text' => '<h6 class="nav-subtitle">' . esc_html__( 'Next post', 'dhnow' ) . '</h6> <span class="nav-title">%title</span>',
 							)
 						);
 

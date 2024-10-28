@@ -25,7 +25,7 @@ $vertical-tabs-left-col-width: 27%;
 		@include lg {
 			content: "";
 			background-color: $color__black-66;
-			height: 110%;
+			height: calc(100% + 25px);
 			left: $vertical-tabs-left-col-width;
 			margin: auto;
 			position: absolute;
@@ -110,18 +110,25 @@ $vertical-tabs-left-col-width: 27%;
 	}
 
 	.tab-content {
+		display: none;
 		left: 0;
 		opacity: 0;
 		padding-left: 50px;
+		padding-right: 15px;
 		position: absolute;
 		top: 180px;
 		transition: opacity 0.2s ease-out;
-		visibility: hidden;
+		width: 100%;
 
 		@include lg{
 			left: $vertical-tabs-left-col-width;
 			padding-left: 90px;
 			top: 0;
+			width: calc(100% - #{$vertical-tabs-left-col-width});
+		}
+
+		ul {
+			padding-left: 0;
 		}
 	}
 }

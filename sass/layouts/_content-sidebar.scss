@@ -2,18 +2,26 @@
 	display: grid;
 	grid-template-areas:
 		"header"
-		"sidebar"
 		"main"
+		"sidebar"
 		"footer";
 	grid-template-columns: auto;
 	margin: 0 auto;
 	max-width: 1024px;
 
+	&.editors-corner-sidebar {
+		grid-template-areas:
+		"header"
+		"sidebar"
+		"main"
+		"footer";
+	}
+
 	@include xl {
 		grid-template-areas:
 		"header header"
 		"main sidebar"
-		"footer footer";
+		"footer footer" !important;
 		grid-template-columns: auto ($size__site-sidebar);
 	}
 

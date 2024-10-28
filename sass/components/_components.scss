@@ -18,8 +18,9 @@
 --------------------------------------------- */
 @import "blocks/info-block";
 @import "blocks/vertical-tabs";
-@import "blocks/wp-block-query";
 @import "blocks/wp-block-columns";
+@import "blocks/wp-block-cover";
+@import "blocks/wp-block-query";
 
 /* Comments
 --------------------------------------------- */
@@ -44,6 +45,10 @@
 /* External Links
 --------------------------------------------- */
 @import "external-links/external-links";
+
+/* Pagination
+--------------------------------------------- */
+@import "pagination/pagination";
 
 /* Footer
 --------------------------------------------- */

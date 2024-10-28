@@ -209,6 +209,64 @@ function dhnow_enqueue_editor_styles() {
 add_action( 'enqueue_block_editor_assets', 'dhnow_enqueue_editor_styles' );
 
 /**
+ * Load Page Sidebar choices dynamically.
+ *
+ * @param array $field The field options.
+ *
+ * @return array
+ */
+function dhn_acf_load_sidebar_choices( $field ) {
+	global $wp_registered_sidebars;
+
+	$field['choices'] = array();
+
+	foreach ( $wp_registered_sidebars as $sidebar ) {
+		$field['choices'][ $sidebar['id'] ] = $sidebar['name'];
+	}
+
+	return $field;
+}
+add_filter( 'acf/load_field/name=sidebar', 'dhn_acf_load_sidebar_choices' );
+
+/**
+ * Register custom shortcodes.
+ */
+function register_shortcodes() {
+	add_shortcode( 'feeds', 'active_feeds_function' );
+}
+add_action( 'init', 'register_shortcodes' );
+
+/**
+ * Feeds Shortcode function.
+ *
+ * @param array $atts The shortcode attributes.
+ *
+ * @return string
+ */
+function active_feeds_function($atts) {
+	extract(shortcode_atts(array(
+		'status' => 'publish',
+	), $atts));
+
+	$return_string = '<ul class="feedlist">';
+	$the_query = new WP_Query( array( 'post_type' => 'pf_feed', 'post_status' =>
+		$status, 'nopaging' => true, 'orderby' => 'title', 'order' => 'ASC', 'no_found_rows' => true ) );
+
+	if ( $the_query->have_posts() ) :
+		while ( $the_query->have_posts() )  : $the_query->the_post();
+			$return_string .= '<li class="feeditem"><a href="' . get_post_meta( get_the_ID(), 'feedUrl', true ) . '" target="_blank">' . get_the_title() . '</a></li>';
+		endwhile;
+	endif;
+
+	$return_string .= '</ul>';
+
+	wp_reset_query();
+	wp_reset_postdata();
+
+	return $return_string;
+}
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';

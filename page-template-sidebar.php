@@ -7,6 +7,7 @@ get_header();
 
 $content = get_the_content();
 $blocks  = parse_blocks( $content );
+$sidebar = get_field( 'sidebar' );
 ?>
 
 	<main id="primary" class="site-main">
@@ -16,7 +17,7 @@ $blocks  = parse_blocks( $content );
         }
         ?>
 
-		<div class="container with-sidebar">
+		<div class="container with-sidebar <?php echo esc_attr( $sidebar ); ?>">
             <div class="grid-header">
 
             </div>
@@ -28,10 +29,10 @@ $blocks  = parse_blocks( $content );
                 }
                 ?>
             </div>
-            <?php if ( is_active_sidebar( 'editors-corner-sidebar' ) ) : ?>
+            <?php if ( is_active_sidebar( $sidebar ) ) : ?>
 
 				<aside id="secondary" class="widget-area">
-                    <?php dynamic_sidebar( 'editors-corner-sidebar' ); ?>
+                    <?php dynamic_sidebar( $sidebar ); ?>
 				</aside>
 
             <?php endif; ?>
