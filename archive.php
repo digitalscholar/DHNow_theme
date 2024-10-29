@@ -32,7 +32,7 @@ $pagination_args = array(
 					<div style="height:130px" aria-hidden="true" class="wp-block-spacer"></div>
 					<?php
 					the_archive_title( '<h1 class="page-title wp-block-heading has-text-align-center">', '</h1>' );
-					the_archive_description( '<div class="archive-description">', '</div>' );
+					the_archive_description( '<div class="archive-description has-text-align-center">', '</div>' );
 					?>
 				</div>
 			</header><!-- .page-header -->

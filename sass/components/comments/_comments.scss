@@ -1,7 +1,33 @@
-.comment-content a {
-	word-wrap: break-word;
-}
+#comments {
+	border-top: 1px solid $color__background-hr;
+	margin-top: 30px;
 
-.bypostauthor {
-	display: block;
+	.comment-content a {
+		word-wrap: break-word;
+	}
+
+	.bypostauthor {
+		display: block;
+	}
+
+	.comment-list {
+		margin-bottom: 30px;
+	}
+
+	.comment-respond {
+		border-top: 1px solid $color__background-hr;
+	}
+
+	.comment-reply-title {
+		font-size: 1.25rem;
+	}
+
+	label {
+		display: inline-block;
+		min-width: 80px;
+	}
+
+	p {
+		margin-bottom: 10px;
+	}
 }

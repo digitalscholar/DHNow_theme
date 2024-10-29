@@ -30,15 +30,15 @@
 		}
 
 		.entry-footer {
-			border-bottom: 1px solid $color__background-hr;
 			margin-bottom: 30px;
-			padding-bottom: 30px;
 		}
 
 		.tags-links {
+			border-bottom: 1px solid $color__background-hr;
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
+			padding-bottom: 30px;
 
 			a {
 				border: 1px solid $color__tertiary;
