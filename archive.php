@@ -37,6 +37,10 @@ $pagination_args = array(
 				</div>
 			</header><!-- .page-header -->
 
+			<div class="container">
+				<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+			</div>
+
 			<div class="container with-sidebar">
 
 				<div class="grid-header">

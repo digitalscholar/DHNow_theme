@@ -45,6 +45,10 @@ $unique_parent_names = array_unique( $parent_category_names );
 			</div>
 		</header><!-- .page-header -->
 
+		<div class="container">
+			<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+		</div>
+
 		<div class="container with-sidebar">
 
 			<div class="grid-header">

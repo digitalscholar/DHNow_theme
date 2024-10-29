@@ -7,14 +7,30 @@
  * @package DHNow
  */
 
+
+$content = get_the_content();
+$blocks  = parse_blocks( $content );
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="entry-content">
 		<?php
-		the_content();
+		if ( ! empty( $blocks ) && $blocks[0]['blockName'] === 'core/cover' ) {
+			echo render_block( $blocks[0] );
+		}
+		?>
 
+		<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+
+		<?php
+		foreach ( $blocks as $index => $block ) {
+			if ( $index === 0 ) continue;
+			echo render_block( $block );
+		}
+		?>
+
+		<?php
 		wp_link_pages(
 			array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'dhnow' ),
@@ -24,26 +40,4 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
-			<?php
-			edit_post_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'dhnow' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-			?>
-		</footer><!-- .entry-footer -->
-	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->

@@ -267,6 +267,57 @@ function active_feeds_function($atts) {
 }
 
 /**
+ * Customize Yoast SEO Breadcrumbs.
+ *
+ * @param array $links The breadcrumbs links.
+ *
+ * @return array
+ */
+function yoast_seo_breadcrumb_append_link( $links ) {
+	global $post;
+
+	if ( is_single() ) {
+		$breadcrumb[] = array(
+			'url' => site_url( '/blog/' ),
+			'text' => 'Blog',
+		);
+
+		$categories = get_the_category();
+		if ( $categories ) {
+			// Assuming you want the first category
+			$first_category  = $categories[0];
+
+			if ( $first_category->parent ) {
+				$parent_category = get_category( $first_category->parent );
+				$breadcrumb[] = array(
+					'url' => get_category_link( $parent_category->term_id ),
+					'text' => esc_html( $parent_category->name ),
+				);
+			}
+
+			if ( $first_category ) {
+				$breadcrumb[] = array(
+					'url' => get_category_link( $first_category->term_id ),
+					'text' => esc_html( $first_category->name ),
+				);
+			}
+		}
+
+		array_splice( $links, 1, -2, $breadcrumb );
+	} elseif ( is_archive() ) {
+		$breadcrumb[] = array(
+			'url' => site_url( '/blog/' ),
+			'text' => 'Blog',
+		);
+
+		array_splice( $links, 1, -2, $breadcrumb );
+	}
+
+	return $links;
+}
+add_filter( 'wpseo_breadcrumb_links', 'yoast_seo_breadcrumb_append_link' );
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -292,4 +343,3 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
