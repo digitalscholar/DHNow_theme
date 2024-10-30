@@ -317,7 +317,24 @@ function yoast_seo_breadcrumb_append_link( $links ) {
 }
 add_filter( 'wpseo_breadcrumb_links', 'yoast_seo_breadcrumb_append_link' );
 
-/**
+function filter_nominate_volunteer_blocks( $block_content, $block ) {
+	if ( is_user_logged_in() && $block['blockName'] === 'core/paragraph' ) {
+		if ( str_contains( $block_content, 'nominate' ) !== false || str_contains( $block_content, 'volunteer' ) !== false ) {
+			$block_content = '<div class="wp-block-buttons is-content-justification-center is-layout-flex">';
+			$block_content .= '<div class="wp-block-button is-style-outline">';
+
+			if ( str_contains( $block_content, 'nominate' ) !== false ) {
+				$block_content .= '<a href="/wp-admin/admin.php?page=pf-menu" class="wp-block-button__link wp-element-button">Nominate Content</a></div></div>';
+			} else {
+				$block_content .= '<a href="/wp-admin/profile.php" class="wp-block-button__link wp-element-button">Manage Volunteer Dates</a></div></div>';
+			}
+		}
+	}
+	return $block_content;
+}
+add_filter( 'render_block', 'filter_nominate_volunteer_blocks', 10, 2 );
+
+	/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
