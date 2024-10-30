@@ -229,44 +229,6 @@ function dhn_acf_load_sidebar_choices( $field ) {
 add_filter( 'acf/load_field/name=sidebar', 'dhn_acf_load_sidebar_choices' );
 
 /**
- * Register custom shortcodes.
- */
-function register_shortcodes() {
-	add_shortcode( 'feeds', 'active_feeds_function' );
-}
-add_action( 'init', 'register_shortcodes' );
-
-/**
- * Feeds Shortcode function.
- *
- * @param array $atts The shortcode attributes.
- *
- * @return string
- */
-function active_feeds_function($atts) {
-	extract(shortcode_atts(array(
-		'status' => 'publish',
-	), $atts));
-
-	$return_string = '<ul class="feedlist">';
-	$the_query = new WP_Query( array( 'post_type' => 'pf_feed', 'post_status' =>
-		$status, 'nopaging' => true, 'orderby' => 'title', 'order' => 'ASC', 'no_found_rows' => true ) );
-
-	if ( $the_query->have_posts() ) :
-		while ( $the_query->have_posts() )  : $the_query->the_post();
-			$return_string .= '<li class="feeditem"><a href="' . get_post_meta( get_the_ID(), 'feedUrl', true ) . '" target="_blank">' . get_the_title() . '</a></li>';
-		endwhile;
-	endif;
-
-	$return_string .= '</ul>';
-
-	wp_reset_query();
-	wp_reset_postdata();
-
-	return $return_string;
-}
-
-/**
  * Customize Yoast SEO Breadcrumbs.
  *
  * @param array $links The breadcrumbs links.
@@ -317,17 +279,27 @@ function yoast_seo_breadcrumb_append_link( $links ) {
 }
 add_filter( 'wpseo_breadcrumb_links', 'yoast_seo_breadcrumb_append_link' );
 
+/**
+ * Filter the Nominate and Volunteer paragraph blocks to show the corresponding buttons to logged in users.
+ *
+ * @param string $block_content The current block content.
+ * @param array  $block         The block array.
+ *
+ * @return string
+ */
 function filter_nominate_volunteer_blocks( $block_content, $block ) {
 	if ( is_user_logged_in() && $block['blockName'] === 'core/paragraph' ) {
-		if ( str_contains( $block_content, 'nominate' ) !== false || str_contains( $block_content, 'volunteer' ) !== false ) {
-			$block_content = '<div class="wp-block-buttons is-content-justification-center is-layout-flex">';
-			$block_content .= '<div class="wp-block-button is-style-outline">';
+		if ( str_contains( $block_content, 'nominate-replace' ) !== false || str_contains( $block_content, 'volunteer-replace' ) !== false ) {
+			$new_block_content = '<div class="wp-block-buttons is-content-justification-center is-layout-flex">';
+			$new_block_content .= '<div class="wp-block-button is-style-outline">';
 
-			if ( str_contains( $block_content, 'nominate' ) !== false ) {
-				$block_content .= '<a href="/wp-admin/admin.php?page=pf-menu" class="wp-block-button__link wp-element-button">Nominate Content</a></div></div>';
+			if ( str_contains( $block_content, 'nominate-replace' ) !== false ) {
+				$new_block_content .= '<a href="/wp-admin/admin.php?page=pf-menu" class="wp-block-button__link wp-element-button">Nominate Content</a></div></div>';
 			} else {
-				$block_content .= '<a href="/wp-admin/profile.php" class="wp-block-button__link wp-element-button">Manage Volunteer Dates</a></div></div>';
+				$new_block_content .= '<a href="/wp-admin/profile.php" class="wp-block-button__link wp-element-button">Manage Volunteer Dates</a></div></div>';
 			}
+
+			$block_content = $new_block_content;
 		}
 	}
 	return $block_content;
@@ -353,10 +325,3 @@ require get_template_directory() . '/inc/custom-blocks.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
