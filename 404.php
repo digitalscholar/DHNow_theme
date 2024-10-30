@@ -12,46 +12,31 @@ get_header();
 
 	<main id="primary" class="site-main">
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'dhnow' ); ?></h1>
-			</header><!-- .page-header -->
+		<header class="page-header wp-block-cover alignfull" style="min-height:350px;aspect-ratio:unset;">
+			<span aria-hidden="true" class="wp-block-cover__background has-background-dim-100 has-background-dim wp-block-cover__gradient-background has-background-gradient" style="background:linear-gradient(180deg,rgb(0,0,0) 0%,rgba(0,0,0,0.2) 100%)"></span>
+			<img fetchpriority="high" decoding="async" width="1440" height="350" class="wp-block-cover__image-background wp-image-221327" alt="DHNow" src="/wp-content/uploads/2024/10/pages-cover.jpg" data-object-fit="cover" srcset="/wp-content/uploads/2024/10/pages-cover.jpg 1440w, /wp-content/uploads/2024/10/pages-cover-300x73.jpg 300w, /wp-content/uploads/2024/10/pages-cover-1024x249.jpg 1024w, /wp-content/uploads/2024/10/pages-cover-768x187.jpg 768w" sizes="(max-width: 1440px) 100vw, 1440px">
+			<div class="wp-block-cover__inner-container is-layout-constrained wp-block-cover-is-layout-constrained">
+				<div style="height:130px" aria-hidden="true" class="wp-block-spacer"></div>
+				<h1 class="page-title wp-block-heading has-text-align-center">
+					<?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'dhnow' ); ?>
+				</h1>
+			</div>
+		</header><!-- .page-header -->
 
-			<div class="page-content">
+		<section class="error-404 not-found container__small">
+
+			<div class="wp-block-group">
+
 				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'dhnow' ); ?></p>
 
-					<?php
-					get_search_form();
+				<p><?php get_search_form(); ?></p>
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+				<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+					<?php dynamic_sidebar( 'sidebar-1' ); ?>
+				<?php endif; ?>
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'dhnow' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
+			</div>
 
-					<?php
-					/* translators: %1$s: smiley */
-					$dhnow_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'dhnow' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$dhnow_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
 	</main><!-- #main -->

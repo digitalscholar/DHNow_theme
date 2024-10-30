@@ -19,59 +19,42 @@
 		</div>
 	</header><!-- .page-header -->
 
-	<div class="container with-sidebar">
+	<div class="container__small">
 
-		<div class="grid-header">
+		<div class="wp-block-group">
+			<?php
+			if ( is_home() && current_user_can( 'publish_posts' ) ) :
 
-		</div>
+				printf(
+					'<p>' . wp_kses(
+						/* translators: 1: link to WP admin new post page. */
+						__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'dhnow' ),
+						array(
+							'a' => array(
+								'href' => array(),
+							),
+						)
+					) . '</p>',
+					esc_url( admin_url( 'post-new.php' ) )
+				);
 
-		<div class="grid-main">
-			<div class="wp-block-group">
-				<?php
-				if ( is_home() && current_user_can( 'publish_posts' ) ) :
-
-					printf(
-						'<p>' . wp_kses(
-							/* translators: 1: link to WP admin new post page. */
-							__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'dhnow' ),
-							array(
-								'a' => array(
-									'href' => array(),
-								),
-							)
-						) . '</p>',
-						esc_url( admin_url( 'post-new.php' ) )
-					);
-
-				elseif ( is_search() ) :
-					?>
-
-					<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'dhnow' ); ?></p>
-					<?php
-					get_search_form();
-
-				else :
-					?>
-
-					<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'dhnow' ); ?></p>
-					<?php
-					get_search_form();
-
-				endif;
+			elseif ( is_search() ) :
 				?>
-			</div>
-		</div>
 
-		<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+				<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'dhnow' ); ?></p>
+				<p><?php get_search_form(); ?></p>
 
-			<aside id="secondary" class="widget-area">
+			<?php else : ?>
+
+				<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'dhnow' ); ?></p>
+				<p><?php get_search_form(); ?></p>
+
+			<?php endif; ?>
+
+			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 				<?php dynamic_sidebar( 'sidebar-1' ); ?>
-			</aside>
-
-		<?php endif; ?>
-
-		<div class="grid-footer">
-
+			<?php endif; ?>
 		</div>
+
 	</div><!-- .page-content -->
 </section><!-- .no-results -->
