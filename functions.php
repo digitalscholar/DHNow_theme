@@ -12,6 +12,10 @@ if ( ! defined( 'DHNOW_VERSION' ) ) {
 	define( 'DHNOW_VERSION', '1.0.0' );
 }
 
+add_filter('wp_mail_from', function ($email) {
+	return 'dhnow@pressforward.org';
+});
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -306,7 +310,7 @@ function filter_nominate_volunteer_blocks( $block_content, $block ) {
 }
 add_filter( 'render_block', 'filter_nominate_volunteer_blocks', 10, 2 );
 
-	/**
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';

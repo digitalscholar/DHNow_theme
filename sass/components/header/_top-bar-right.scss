@@ -8,12 +8,9 @@
 	}
 
 	.search-form {
+		min-width: 220px;
 		position: relative;
 		width: 100%;
-
-		@include xl {
-			width: 220px;
-		}
 
 		.search-field {
 			background-color: transparent;

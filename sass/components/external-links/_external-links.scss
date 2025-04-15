@@ -1,10 +1,9 @@
 .external-links {
 	margin-top: 20px;
 
-	&-rss,
-	&-x-twitter,
-	&-pressforward {
+	.external-link {
 		margin-right: 15px;
+		text-decoration: none;
 	}
 
 	&-editors-login {
