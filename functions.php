@@ -9,7 +9,7 @@
 
 if ( ! defined( 'DHNOW_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'DHNOW_VERSION', '1.0.0' );
+	define( 'DHNOW_VERSION', '1.0.1' );
 }
 
 add_filter('wp_mail_from', function ($email) {
